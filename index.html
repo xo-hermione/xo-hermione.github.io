@@ -1,1 +1,52 @@
-Hello World
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+</head>
+
+<body>
+    <script>
+        var env = 'production', // use 'production' for LIVE or 'sandbox' for 'Sandbox'
+            client = {
+                sandbox: 'AYB39kMuDfyr6rSVolWsIYGiNEexa2-liHkA9Pif5L-RdKuy8IYpsVO8AZYM9O_NdvcedPC5XrOkjogJ',
+                production: 'AVdoWeHyWU2sgdC-eXjp8oem2gvK8M1PDgj1zXN7h-Xm2q0dapc_MqYMFOQDcx43_sq6mQRWwsrqukC-'
+            },
+            options = {
+                payment: {
+                    intent: "authorize",
+                    transactions: [
+                        {
+                            amount: { total:'0.01', currency:'USD' }
+                        }
+                    ]
+                }
+            };
+            
+        var domain = ( env === 'sandbox' ? 'sandbox.paypal' : 'paypal' );
+
+        // Generate Token for Hermes
+        paypal.rest.payment.create(env,client,options).then(function(token) {
+            console.log('Generated Token for Hermes : ', token);
+            var checkout = document.createElement('a');
+            checkout.href = `https://www.${domain}.com/webapps/hermes/?token=${token}&hermes=1`
+            checkout.id = 'checkout'
+            checkout.innerText = 'Checkout  ';
+            document.body.appendChild(checkout);
+            document.body.appendChild(document.createElement('br'));
+        });
+
+        // Generate Token for CheckoutLite
+        paypal.rest.payment.create(env, client, options).then(function (token) {
+            console.log('Generated Token for CheckoutLite : ', token)
+            var lite = document.createElement('a');
+            lite.href = `https://www.${domain}.com/webapps/hermes/?token=${token}&lite=1`
+            // lite.href = `https://www.${domain}.com/checkoutweb/?token=${token}`
+            lite.id = 'lite'
+            lite.innerText = 'Checkout Lite';
+            document.body.appendChild(lite);
+            document.body.appendChild(document.createElement('br'));
+        });
+    </script>
+</body>
