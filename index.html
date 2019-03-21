@@ -48,5 +48,17 @@
             document.body.appendChild(lite);
             document.body.appendChild(document.createElement('br'));
         });
+        
+        // Generate Token for SignupLite
+        paypal.rest.payment.create(env, client, options).then(function (token) {
+            console.log('Generated Token for CheckoutLite : ', token)
+            var lite = document.createElement('a');
+            // lite.href = `https://www.${domain}.com/webapps/hermes/?token=${token}&lite=1`
+            lite.href = `https://www.${domain}.com/checkoutweb/signup?token=${token}`
+            lite.id = 'signuplite'
+            lite.innerText = 'Signup Lite';
+            document.body.appendChild(lite);
+            document.body.appendChild(document.createElement('br'));
+        });
     </script>
 </body>
