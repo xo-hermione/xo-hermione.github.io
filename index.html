@@ -54,7 +54,7 @@
             console.log('Generated Token for CheckoutLite : ', token)
             var lite = document.createElement('a');
             // lite.href = `https://www.${domain}.com/webapps/hermes/?token=${token}&lite=1`
-            lite.href = `https://www.${domain}.com/checkoutweb/signup?token=${token}`
+            lite.href = `https://www.${domain}.com/checkoutweb/signup?locale.x=en_IN&country.x=IN&token=${token}`
             lite.id = 'signuplite'
             lite.innerText = 'Signup Lite';
             document.body.appendChild(lite);
