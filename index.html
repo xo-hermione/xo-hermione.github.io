@@ -30,7 +30,7 @@
         paypal.rest.payment.create(env,client,options).then(function(token) {
             console.log('Generated Token for Hermes : ', token);
             var checkout = document.createElement('a');
-            checkout.href = `https://www.${domain}.com/webapps/hermes/?token=${token}&hermes=1`
+            checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token + '&hermes=1'
             checkout.id = 'checkout'
             checkout.innerText = 'Checkout  ';
             document.body.appendChild(checkout);
@@ -41,7 +41,7 @@
         paypal.rest.payment.create(env, client, options).then(function (token) {
             console.log('Generated Token for CheckoutLite : ', token)
             var lite = document.createElement('a');
-            lite.href = `https://www.${domain}.com/webapps/hermes/?token=${token}&lite=1`
+            lite.href = 'https://www.' + domain + '.com/webapps/hermes/?token=' + token + '&lite=1'
             // lite.href = `https://www.${domain}.com/checkoutweb/?token=${token}`
             lite.id = 'lite'
             lite.innerText = 'Checkout Lite';
@@ -51,10 +51,10 @@
         
         // Generate Token for SignupLite
         paypal.rest.payment.create(env, client, options).then(function (token) {
-            console.log('Generated Token for CheckoutLite : ', token)
+            console.log('Generated Token for SignUpLite : ', token)
             var lite = document.createElement('a');
             // lite.href = `https://www.${domain}.com/webapps/hermes/?token=${token}&lite=1`
-            lite.href = `https://www.${domain}.com/checkoutweb/signup?locale.x=en_IN&country.x=IN&token=${token}`
+            lite.href = 'https://www.' + domain + '.com/checkoutweb/signup?locale.x=en_IN&country.x=IN&token=' + token
             lite.id = 'signuplite'
             lite.innerText = 'Signup Lite';
             document.body.appendChild(lite);
