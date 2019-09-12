@@ -44,7 +44,7 @@
             lite.href = 'https://www.' + domain + '.com/webapps/hermes/?token=' + token + '&lite=1'
             // lite.href = `https://www.${domain}.com/checkoutweb/?token=${token}`
             lite.id = 'lite'
-            lite.innerText = 'Checkout Lite';
+            lite.innerText = 'Direct Checkout Lite';
             document.body.appendChild(lite);
             document.body.appendChild(document.createElement('br'));
         });
@@ -53,7 +53,7 @@
         paypal.rest.payment.create(env, client, options).then(function (token) {
             console.log('Generated Token for CheckoutLite Legacy URL: ', token)
             var lite = document.createElement('a');
-            lite.href = 'https://www.' + domain + '.com?cmd=_expresstoken=' + token + '&lite=1'
+            lite.href = 'https://www.' + domain + '.com?cmd=_express&token=' + token + '&lite=1'
             // lite.href = `https://www.${domain}.com/?cmd=_express-checkout&token=${token}`
             lite.id = 'legacy'
             lite.innerText = 'Checkout Lite via ExpressCheckout URL';
