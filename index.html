@@ -51,12 +51,12 @@
         
         // Generate Token for Checkout via legacy url
         paypal.rest.payment.create(env, client, options).then(function (token) {
-            console.log('Generated Token for CheckoutLite : ', token)
+            console.log('Generated Token for CheckoutLite Legacy URL: ', token)
             var lite = document.createElement('a');
             lite.href = 'https://www.' + domain + '.com?cmd=_expresstoken=' + token + '&lite=1'
             // lite.href = `https://www.${domain}.com/?cmd=_express-checkout&token=${token}`
-            lite.id = 'lite'
-            lite.innerText = 'Checkout Lite';
+            lite.id = 'legacy'
+            lite.innerText = 'Checkout Lite via ExpressCheckout URL';
             document.body.appendChild(lite);
             document.body.appendChild(document.createElement('br'));
         });
