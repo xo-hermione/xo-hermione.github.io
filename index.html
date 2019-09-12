@@ -37,8 +37,6 @@
             document.body.appendChild(document.createElement('br'));
         });
         
-        </br>
-
         // Generate Token for CheckoutLite
         paypal.rest.payment.create(env, client, options).then(function (token) {
             console.log('Generated Token for CheckoutLite : ', token)
@@ -51,7 +49,6 @@
             document.body.appendChild(document.createElement('br'));
         });
         
-        </br>
         
         // Generate Token for Checkout via legacy url
         paypal.rest.payment.create(env, client, options).then(function (token) {
@@ -65,7 +62,6 @@
             document.body.appendChild(document.createElement('br'));
         });
         
-        </br>
         
         // Generate Token for SignupLite
         paypal.rest.payment.create(env, client, options).then(function (token) {
