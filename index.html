@@ -53,7 +53,7 @@
         paypal.rest.payment.create(env, client, options).then(function (token) {
             console.log('Generated Token for CheckoutLite Legacy URL: ', token)
             var lite = document.createElement('a');
-            lite.href = 'https://www.' + domain + '.com?cmd=_express&token=' + token + '&lite=1'
+            lite.href = 'https://www.' + domain + '.com?cmd=_express-checkout&token=' + token + '&lite=1'
             // lite.href = `https://www.${domain}.com/?cmd=_express-checkout&token=${token}`
             lite.id = 'legacy'
             lite.innerText = 'Checkout Lite via ExpressCheckout URL';
