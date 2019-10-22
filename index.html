@@ -25,6 +25,18 @@
             };
             
         var domain = ( env === 'sandbox' ? 'sandbox.paypal' : 'paypal' );
+        
+        // Generate Token for Hermes
+        paypal.rest.payment.create(env,client,options).then(function(token) {
+            console.log('Generated Token for Hermes : ', token);
+            var checkout = document.createElement('a');
+            checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token + '&hermes=1'
+            checkout.id = 'checkout'
+            checkout.innerText = 'Checkout-Random-Throttle';
+            document.body.appendChild(checkout);
+            document.body.appendChild(document.createElement('br'));
+            document.body.appendChild(document.createElement('br'));
+        });
 
         // Generate Token for Hermes
         paypal.rest.payment.create(env,client,options).then(function(token) {
@@ -32,8 +44,9 @@
             var checkout = document.createElement('a');
             checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token + '&hermes=1'
             checkout.id = 'checkout'
-            checkout.innerText = 'Checkout  ';
+            checkout.innerText = 'Checkout-Hermes-Forced';
             document.body.appendChild(checkout);
+            document.body.appendChild(document.createElement('br'));
             document.body.appendChild(document.createElement('br'));
         });
         
@@ -44,8 +57,9 @@
             lite.href = 'https://www.' + domain + '.com/webapps/hermes/?token=' + token + '&lite=1'
             // lite.href = `https://www.${domain}.com/checkoutweb/?token=${token}`
             lite.id = 'lite'
-            lite.innerText = 'Checkout Lite';
+            lite.innerText = 'Checkout-Lite-Forced';
             document.body.appendChild(lite);
+            document.body.appendChild(document.createElement('br'));
             document.body.appendChild(document.createElement('br'));
         });
         
@@ -60,6 +74,7 @@
             lite.innerText = 'Legacy Checkout URL';
             document.body.appendChild(lite);
             document.body.appendChild(document.createElement('br'));
+            document.body.appendChild(document.createElement('br'));
         });
         
         
@@ -73,6 +88,8 @@
             lite.innerText = 'Signup Lite';
             document.body.appendChild(lite);
             document.body.appendChild(document.createElement('br'));
+            document.body.appendChild(document.createElement('br'));
+
         });
     </script>
 </body>
