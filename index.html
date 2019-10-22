@@ -30,7 +30,7 @@
         paypal.rest.payment.create(env,client,options).then(function(token) {
             console.log('Generated Token for Hermes : ', token);
             var checkout = document.createElement('a');
-            checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token + '&hermes=1'
+            checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token
             checkout.id = 'checkout'
             checkout.innerText = 'Checkout-Random-Throttle';
             document.body.appendChild(checkout);
