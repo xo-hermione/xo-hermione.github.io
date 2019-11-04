@@ -10,86 +10,52 @@
     <script>
         var env = 'production', // use 'production' for LIVE or 'sandbox' for 'Sandbox'
             client = {
-                sandbox: 'AYB39kMuDfyr6rSVolWsIYGiNEexa2-liHkA9Pif5L-RdKuy8IYpsVO8AZYM9O_NdvcedPC5XrOkjogJ',
+                sandbox: 'ARTFsnxTBCMCdTWzHX-pIDlHQF6mpNDetZfZ6DtcC03cUPD6NnI9Mz0UmMsDgBHquGAoR4yzwZR5VGPw',
                 production: 'AVdoWeHyWU2sgdC-eXjp8oem2gvK8M1PDgj1zXN7h-Xm2q0dapc_MqYMFOQDcx43_sq6mQRWwsrqukC-'
             },
-            options = {
-                payment: {
-                    intent: "authorize",
-                    transactions: [
-                        {
-                            amount: { total:'0.01', currency:'USD' }
-                        }
-                    ]
+            
+            options = (currencyCode = 'USD') => {
+                return {
+                    payment: {
+                        intent: "authorize",
+                        transactions: [
+                            {
+                                amount: { total:'0.01', currency:currencyCode }
+                            }
+                        ]
+                    }
                 }
             };
             
-        var domain = ( env === 'sandbox' ? 'sandbox.paypal' : 'paypal' );
-        
-        // Generate Token for Hermes
-        paypal.rest.payment.create(env,client,options).then(function(token) {
-            console.log('Generated Token for Hermes : ', token);
-            var checkout = document.createElement('a');
-            checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token
-            checkout.id = 'checkout'
-            checkout.innerText = 'Checkout-Random-Throttle';
-            document.body.appendChild(checkout);
-            document.body.appendChild(document.createElement('br'));
-            document.body.appendChild(document.createElement('br'));
-        });
+       
 
-        // Generate Token for Hermes
-        paypal.rest.payment.create(env,client,options).then(function(token) {
-            console.log('Generated Token for Hermes : ', token);
-            var checkout = document.createElement('a');
-            checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token + '&hermes=1'
-            checkout.id = 'checkout'
-            checkout.innerText = 'Checkout-Hermes-Forced';
-            document.body.appendChild(checkout);
-            document.body.appendChild(document.createElement('br'));
-            document.body.appendChild(document.createElement('br'));
-        });
-        
-        // Generate Token for CheckoutLite
-        paypal.rest.payment.create(env, client, options).then(function (token) {
-            console.log('Generated Token for CheckoutLite : ', token)
-            var lite = document.createElement('a');
-            lite.href = 'https://www.' + domain + '.com/webapps/hermes/?token=' + token + '&lite=1'
-            // lite.href = `https://www.${domain}.com/checkoutweb/?token=${token}`
-            lite.id = 'lite'
-            lite.innerText = 'Checkout-Lite-Forced';
-            document.body.appendChild(lite);
-            document.body.appendChild(document.createElement('br'));
-            document.body.appendChild(document.createElement('br'));
-        });
-        
-        
-        // Generate Token for Checkout via legacy url
-        paypal.rest.payment.create(env, client, options).then(function (token) {
-            console.log('Generated Token for CheckoutLite Legacy URL: ', token)
-            var lite = document.createElement('a');
-            lite.href = 'https://www.' + domain + '.com?cmd=_express-checkout&token=' + token + '&lite=1'
-            // lite.href = `https://www.${domain}.com/?cmd=_express-checkout&token=${token}`
-            lite.id = 'legacy'
-            lite.innerText = 'Legacy Checkout URL';
-            document.body.appendChild(lite);
-            document.body.appendChild(document.createElement('br'));
-            document.body.appendChild(document.createElement('br'));
-        });
-        
-        
-        // Generate Token for SignupLite
-        paypal.rest.payment.create(env, client, options).then(function (token) {
-            console.log('Generated Token for SignUpLite : ', token)
-            var lite = document.createElement('a');
-            // lite.href = `https://www.${domain}.com/webapps/hermes/?token=${token}&lite=1`
-            lite.href = 'https://www.' + domain + '.com/checkoutweb/signup?locale.x=en_IN&country.x=IN&token=' + token
-            lite.id = 'signuplite'
-            lite.innerText = 'Signup Lite';
-            document.body.appendChild(lite);
-            document.body.appendChild(document.createElement('br'));
-            document.body.appendChild(document.createElement('br'));
+        var addBlob = ( blob ) => {
+            return paypal.rest.payment.create(blob.env,client,options(blob.currencyCode)).then(function(token) {
+                var domain = ( blob.env === 'sandbox' ? 'sandbox.paypal' : 'paypal' );
+                var checkout = document.createElement('a');
+                // signuplite 'https://www.' + domain + '.com/checkoutweb/signup?locale.x=en_IN&country.x=IN&token=' + token
+                checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token + blob.urlParams;
+                checkout.id = blob.title;
+                checkout.innerText = blob.title;
+                document.body.appendChild(checkout);
+                document.body.appendChild(document.createElement('br'));
+                document.body.appendChild(document.createElement('br'));
+                document.body.appendChild(document.createElement('hr'));
+            });
+        }
 
-        });
+        var blobs = [
+            { title: 'Sandbox-CheckoutLite-Forced', env: 'sandbox', urlParams:'&lite=1' },
+            { title: 'Sandbox-Hermes-Forced', env: 'sandbox', urlParams:'&hermes=1' },
+            { title: 'Production-CheckouteLite-Forced', env: 'production', urlParams:'&lite=1' },
+            { title: 'Production-CheckouteLite-Throttle', env: 'production', urlParams:'' },
+            { title: 'Production-Hermes-Forced', env: 'production', urlParams:'&hermes=1' },
+            { title: 'Sandbox-CheckoutLite-Forced-EUR', env: 'sandbox', urlParams:'&lite=1', currencyCode:'EUR' },
+            { title: 'Production-CheckouteLite-Forced-EUR', env: 'production', urlParams:'&lite=1', currencyCode:'EUR' }
+        ];
+
+        for( var count=0; count < blobs.length; count++) {
+            addBlob(blobs[count]);
+        }
     </script>
 </body>
