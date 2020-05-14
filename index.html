@@ -13,7 +13,7 @@
                 sandbox: 'ARTFsnxTBCMCdTWzHX-pIDlHQF6mpNDetZfZ6DtcC03cUPD6NnI9Mz0UmMsDgBHquGAoR4yzwZR5VGPw',
                 production: 'AVdoWeHyWU2sgdC-eXjp8oem2gvK8M1PDgj1zXN7h-Xm2q0dapc_MqYMFOQDcx43_sq6mQRWwsrqukC-'
             },
-            
+
             options = (currencyCode = 'USD') => {
                 return {
                     payment: {
@@ -29,15 +29,14 @@
                     }
                 }
             };
-            
-       
+
+
 
         var addBlob = ( blob ) => {
             return paypal.rest.payment.create(blob.env,client,options(blob.currencyCode)).then(function(token) {
                 var domain = ( blob.env === 'sandbox' ? 'sandbox.paypal' : 'paypal' );
                 var checkout = document.createElement('a');
-                // signuplite 'https://www.' + domain + '.com/checkoutweb/signup?locale.x=en_IN&country.x=IN&token=' + token
-                checkout.href = 'https://www.'+ domain + '.com/webapps/hermes/?token=' + token + blob.urlParams;
+                checkout.href = 'https://www.'+ domain + '.com' + ( blob.path || '/webapps/hermes' ) + '/?token=' + token + ( blob.urlParams || '' );
                 checkout.id = blob.title;
                 checkout.innerText = blob.title;
                 document.body.appendChild(document.createElement('br'));
@@ -50,9 +49,11 @@
         var blobs = [
             { title: 'Sandbox-CheckoutLite-Forced', env: 'sandbox', urlParams:'&lite=1' },
             { title: 'Sandbox-Hermes-Forced', env: 'sandbox', urlParams:'&hermes=1' },
+            { title: 'Sandbox-SignupLite-Forced', env: 'sandbox', path: '/checkoutweb/signup' },
             { title: 'Production-CheckouteLite-Forced', env: 'production', urlParams:'&lite=1' },
             { title: 'Production-CheckouteLite-Throttle', env: 'production', urlParams:'' },
             { title: 'Production-Hermes-Forced', env: 'production', urlParams:'&hermes=1' },
+            { title: 'Production-SignupLite-Forced', env: 'production', path: '/checkoutweb/signup' },
             { title: 'Sandbox-CheckoutLite-Forced-EUR', env: 'sandbox', urlParams:'&lite=1', currencyCode:'EUR' },
             { title: 'Production-CheckouteLite-Forced-EUR', env: 'production', urlParams:'&lite=1', currencyCode:'EUR' }
         ];
