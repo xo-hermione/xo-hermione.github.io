@@ -14,10 +14,10 @@
                 production: 'AVdoWeHyWU2sgdC-eXjp8oem2gvK8M1PDgj1zXN7h-Xm2q0dapc_MqYMFOQDcx43_sq6mQRWwsrqukC-'
             },
 
-            options = (currencyCode = 'USD') => {
+            options = (currencyCode = 'USD', intent = 'authorize') => {
                 return {
                     payment: {
-                        intent: "authorize",
+                        intent: intent,
                         transactions: [
                             {
                                 amount: { total:'0.01', currency:currencyCode }
@@ -50,7 +50,8 @@
             { title: 'Sandbox-CheckoutLite-Forced', env: 'sandbox', urlParams:'&lite=1' },
             { title: 'Sandbox-Hermes-Forced', env: 'sandbox', urlParams:'&hermes=1' },
             { title: 'Sandbox-SignupLite-Forced', env: 'sandbox', path: '/checkoutweb/signup' },
-            { title: 'Production-CheckouteLite-Forced', env: 'production', urlParams:'&lite=1' },
+            { title: 'Production-CheckouteLite-Forced-Sale', env: 'production', urlParams:'&lite=1', intent='sale' },
+            { title: 'Production-CheckouteLite-Forced-Auth', env: 'production', urlParams:'&lite=1' },
             { title: 'Production-CheckouteLite-Throttle', env: 'production', urlParams:'' },
             { title: 'Production-Hermes-Forced', env: 'production', urlParams:'&hermes=1' },
             { title: 'Production-SignupLite-Forced', env: 'production', path: '/checkoutweb/signup' },
