@@ -46,48 +46,30 @@
             });
         }
         
-        var sandbox_blobs = [
+        var blobs = [
             { title: 'Sandbox-CheckoutLite-Forced', env: 'sandbox', urlParams:'&lite=1' },
             { title: 'Sandbox-Hermes-Forced', env: 'sandbox', urlParams:'&hermes=1' },
             { title: 'Sandbox-SignupLite-Forced', env: 'sandbox', path: '/checkoutweb/signup' },
-            { title: 'Sandbox-CheckoutLite-Forced-EUR', env: 'sandbox', urlParams:'&lite=1', currencyCode:'EUR' }
-        ];
+            { title: 'Sandbox-CheckoutLite-Forced-EUR', env: 'sandbox', urlParams:'&lite=1', currencyCode:'EUR' },
 
-        var production_blobs = [
             { title: 'Production-CheckouteLite-Forced', env: 'production', urlParams:'&lite=1' },
             { title: 'Production-CheckouteLite-Throttle', env: 'production', urlParams:'' },
             { title: 'Production-Hermes-Forced', env: 'production', urlParams:'&hermes=1' },
             { title: 'Production-SignupLite-Forced', env: 'production', path: '/checkoutweb/signup' },
             { title: 'Production-CheckouteLite-Forced-EUR', env: 'production', urlParams:'&lite=1', currencyCode:'EUR' },
             { title: 'Production-CheckouteLite-Forced-Sale-EUR', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', intent:'capture' },
-        ];
-        
-        var sandbox_bnpl_blobs = [
+
             { title: 'Sandbox-BNPL-Tabbed', env: 'sandbox', urlParams:'&lite=1&elmo_feature_PAYMENT_OPTIONS=TREATMENT_1&elmo_feature_PAY_LATER=TREATMENT_1&elmo_feature_SPLIT_TENDER_GATE=CONTROL&elmo_feature_TABBED_PAYMENT_OPTIONS=TREATMENT_1&elmo_feature_BNPL_TABBED_BUBBLE=TREATMENT_1' },
             { title: 'Sandbox-BNPL-Stacked', env: 'sandbox', urlParams:'&lite=1&elmo_feature_PAYMENT_OPTIONS=TREATMENT_1&elmo_feature_PAY_LATER=TREATMENT_1&elmo_feature_SPLIT_TENDER_GATE=CONTROL&elmo_feature_TABBED_PAYMENT_OPTIONS=CONTROL&&elmo_feature_BNPL_STACKED_BUBBLE=TREATMENT_1' },
             { title: 'Sandbox-BNPL-Control', env: 'sandbox', urlParams:'&lite=1&elmo_feature_PAYMENT_OPTIONS=CONTROL&elmo_feature_PAY_LATER=CONTROL&elmo_feature_SPLIT_TENDER_GATE=CONTROL&elmo_feature_TABBED_PAYMENT_OPTIONS=CONTROL' },
-        ];
-        
-        var production_bnpl_blobs = [
+
             { title: 'Production-BNPL-Tabbed', env: 'production', urlParams:'&lite=1&elmo_feature_PAYMENT_OPTIONS=TREATMENT_1&elmo_feature_PAY_LATER=TREATMENT_1&elmo_feature_SPLIT_TENDER_GATE=CONTROL&elmo_feature_TABBED_PAYMENT_OPTIONS=TREATMENT_1&elmo_feature_BNPL_TABBED_BUBBLE=TREATMENT_1' },
             { title: 'Production-BNPL-Stacked', env: 'production', urlParams:'&lite=1&elmo_feature_PAYMENT_OPTIONS=TREATMENT_1&elmo_feature_PAY_LATER=TREATMENT_1&elmo_feature_SPLIT_TENDER_GATE=CONTROL&elmo_feature_TABBED_PAYMENT_OPTIONS=CONTROL&&elmo_feature_BNPL_STACKED_BUBBLE=TREATMENT_1' },
             { title: 'Production-BNPL-Control', env: 'production', urlParams:'&lite=1&elmo_feature_PAYMENT_OPTIONS=CONTROL&elmo_feature_PAY_LATER=CONTROL&elmo_feature_SPLIT_TENDER_GATE=CONTROL&elmo_feature_TABBED_PAYMENT_OPTIONS=CONTROL' }
         ];
 
-        for( var count=0; count < sandbox_blobs.length; count++) {
-            addBlob(sandbox_blobs[count]);
-        }
-        
-        for( var count=0; count < production_blobs.length; count++) {
-            addBlob(production_blobs[count]);
-        }
-        
-        for( var count=0; count < sandbox_bnpl_blobs.length; count++) {
-            addBlob(sandbox_bnpl_blobs[count]);
-        }
-        
-        for( var count=0; count < production_bnpl_blobs.length; count++) {
-            addBlob(production_bnpl_blobs[count]);
+        for( var count=0; count < blobs.length; count++) {
+            addBlob(blobs[count]);
         }
     </script>
 </body>
