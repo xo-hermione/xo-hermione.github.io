@@ -14,13 +14,13 @@
                 production: 'AVdoWeHyWU2sgdC-eXjp8oem2gvK8M1PDgj1zXN7h-Xm2q0dapc_MqYMFOQDcx43_sq6mQRWwsrqukC-'
             },
 
-            options = (currencyCode = 'USD', intent = 'authorize') => {
+            options = (currencyCode = 'USD', intent = 'authorize', cartamount = '250') => {
                 return {
                     payment: {
                         intent: intent,
                         transactions: [
                             {
-                                amount: { total:'100', currency:currencyCode }
+                                amount: { total:cartamount, currency:currencyCode }
                             }
                         ],
                         redirect_urls:{
@@ -58,6 +58,10 @@
             { title: 'Production-SignupLite-Forced', env: 'production', path: '/checkoutweb/signup' },
             { title: 'Production-CheckouteLite-Forced-EUR', env: 'production', urlParams:'&lite=1', currencyCode:'EUR' },
             { title: 'Production-CheckouteLite-Forced-Sale-EUR', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', intent:'capture' },
+            
+            
+            { title: 'Production-EUR-30-Plus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount=200 },
+            { title: 'Production-EUR-30-Minus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount=20 }
 
         ];
 
