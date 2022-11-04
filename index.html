@@ -54,8 +54,6 @@
             { title: 'Sandbox-SignupLite-Forced', env: 'sandbox', path: '/checkoutweb/signup' },
             { title: 'Sandbox-CheckoutLite-Forced-EUR', env: 'sandbox', urlParams:'&lite=1', currencyCode:'EUR' },
 
-            { title: 'Production-NorthStar', env: 'production', urlParams:'&lite=1&northstarEligible=1' },
-            { title: 'Production-Dumbledore', env: 'production', urlParams:'&lite=1&dumbledoreEligible=1' },
             { title: 'Production-CheckouteLite-Forced', env: 'production', urlParams:'&lite=1' },
             { title: 'Production-Hermes-Forced', env: 'production', urlParams:'&hermes=1' },
             { title: 'Production-SignupLite-Forced', env: 'production', path: '/checkoutweb/signup' },
@@ -65,9 +63,11 @@
             
             { title: 'Production-EUR-30-Plus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount:'250' },
             { title: 'Production-EUR-30-Minus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount:'20' },
+            
             { title: 'Production-Patch-Webscr-URL', env: 'production', path: '/cgi-bin/webscr', cmd:'_express-checkout'},
             { title: 'Production-Patch-Hermes-URL', env: 'production', path: '/webapps/hermes'},
-            { title: 'Production-Patch-Lite-URL', env: 'production', path: '/checkoutweb'},
+            { title: 'Production-Patch-Checkoutuinodeweb-URL', env: 'production', path: '/checkoutweb'},
+            { title: 'Production-Patch-CheckoutNow-URL', env: 'production', path: '/checkoutnow'}
 
         ];
 
