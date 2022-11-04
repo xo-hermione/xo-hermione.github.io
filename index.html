@@ -38,7 +38,7 @@
             return paypal.rest.payment.create(blob.env, client, options(blob.currencyCode, blob.intent, blob.cartamount)).then(function(token) {
                 var domain = ( blob.env === 'sandbox' ? 'sandbox.paypal' : 'paypal' );
                 var checkout = document.createElement('a');
-                checkout.href = 'https://www.'+ domain + '.com' + ( blob.path || '/webapps/hermes' ) + '/?token=' + token + ( blob.urlParams || '' );
+                checkout.href = 'https://www.'+ domain + '.com' + ( blob.path || '/webapps/hermes' ) + '/?token=' + token + ( blob.urlParams || '' ) + (blob.cmd || '');
                 checkout.id = blob.title;
                 checkout.innerText = blob.title;
                 document.body.appendChild(document.createElement('br'));
@@ -64,7 +64,10 @@
             
             
             { title: 'Production-EUR-30-Plus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount:'250' },
-            { title: 'Production-EUR-30-Minus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount:'20' }
+            { title: 'Production-EUR-30-Minus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount:'20' },
+            { title: 'Production-Patch-Webscr-URL', env: 'production', path: '/cgi-bin/webscr', cmd:'_express-checkout'},
+            { title: 'Production-Patch-Hermes-URL', env: 'production', path: '/webapps/hermes'},
+            { title: 'Production-Patch-Lite-URL', env: 'production', path: '/checkoutweb'},
 
         ];
 
