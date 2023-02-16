@@ -47,7 +47,7 @@
                 document.body.appendChild(document.createElement('hr'));
             });
         }
-        
+
         var blobs = [
             { title: 'Sandbox-CheckoutLite', env: 'sandbox', urlParams:'&lite=1' },
             { title: 'Sandbox-SignupLite', env: 'sandbox', path: '/checkoutweb/signup' },
@@ -55,13 +55,15 @@
 
             { title: 'Production-CheckouteLite', env: 'production', urlParams:'&lite=1' },
             { title: 'Production-SignupLite', env: 'production', path: '/checkoutweb/signup' },
+            { title: 'Production-SignupLite-Landing-USD-1', env: 'production', path: '/checkoutweb/landing', cartAmount: '1' },
+            { title: 'Production-SignupLite-Landing-USD-50', env: 'production', path: '/checkoutweb/landing', cartAmount: '50' },
             { title: 'Production-CheckouteLite-EUR', env: 'production', urlParams:'&lite=1', currencyCode:'EUR' },
             { title: 'Production-CheckouteLite-Sale-EUR', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', intent:'capture' },
-            
-            
+
+
             { title: 'Production-CheckoutLite-EUR-30-Plus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount:'250' },
             { title: 'Production-CheckoutLite-EUR-30-Minus', env: 'production', urlParams:'&lite=1', currencyCode:'EUR', cartamount:'20' },
-            
+
             { title: 'Production-Webscr-URL', env: 'production', path: '/cgi-bin/webscr', cmd:'_express-checkout'},
             { title: 'Production-Hermes-URL', env: 'production', path: '/webapps/hermes'},
             { title: 'Production-Checkoutuinodeweb-URL', env: 'production', path: '/checkoutweb'},
