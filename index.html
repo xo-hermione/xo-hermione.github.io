@@ -52,8 +52,10 @@
             { title: 'Sandbox-CheckoutLite', env: 'sandbox', urlParams:'&lite=1' },
             { title: 'Sandbox-SignupLite', env: 'sandbox', path: '/checkoutweb/signup' },
             { title: 'Sandbox-CheckoutLite-EUR', env: 'sandbox', urlParams:'&lite=1', currencyCode:'EUR' },
+            { title: 'Sandbox-CheckoutLite-EUR-V3', env:'sandbox', urlParams:'lite=1&&entryExperiment=experiment', currencyCode:'EUR'},
 
             { title: 'Production-CheckouteLite', env: 'production', urlParams:'&lite=1' },
+            { title: 'Production-CheckoutLite-EUR-V3', env:'production', urlParams:'lite=1&&entryExperiment=experiment', currencyCode:'EUR'},
             { title: 'Production-SignupLite', env: 'production', path: '/checkoutweb/signup' },
             { title: 'Production-SignupLite-Landing-USD-1', env: 'production', path: '/checkoutweb/landing', cartamount: '1' },
             { title: 'Production-SignupLite-Landing-USD-50', env: 'production', path: '/checkoutweb/landing', cartamount: '50' },
