@@ -35,7 +35,7 @@
 
 
         var addBlob = ( blob ) => {
-            return paypal.rest.payment.create(blob.env, client, options(blob.currencyCode, blob.intent, blob.cartamount)).then(function(token) {
+            return paypal.rest.payment.create(blob.env, client, options(blob.currencyCode, blob.intent, blob.cartamount, blob.returnUrl)).then(function(token) {
                 var domain = ( blob.env === 'sandbox' ? 'sandbox.paypal' : 'paypal' );
                 var checkout = document.createElement('a');
                 checkout.href = 'https://www.'+ domain + '.com' + ( blob.path || '/webapps/hermes' ) + '/?token=' + token + ( blob.urlParams || '' ) + (blob.cmd || '');
