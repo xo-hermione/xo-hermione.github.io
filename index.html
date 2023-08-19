@@ -14,7 +14,7 @@
                 production: 'AVdoWeHyWU2sgdC-eXjp8oem2gvK8M1PDgj1zXN7h-Xm2q0dapc_MqYMFOQDcx43_sq6mQRWwsrqukC-'
             },
 
-            options = (currencyCode = 'USD', intent = 'authorize', cartamount = '250') => {
+            options = (currencyCode = 'USD', intent = 'authorize', cartamount = '250', returnUrl = 'https://xo-hermione.github.io/cancelreturn/') => {
                 return {
                     payment: {
                         intent: intent,
@@ -25,7 +25,7 @@
                             }
                         ],
                         redirect_urls:{
-                            return_url:'https://xo-hermione.github.io/cancelreturn/',
+                            return_url: returnUrl,
                             cancel_url:'https://xo-hermione.github.io'
                         }
                     }
@@ -69,7 +69,8 @@
             { title: 'Production-Webscr-URL', env: 'production', path: '/cgi-bin/webscr', cmd:'_express-checkout'},
             { title: 'Production-Hermes-URL', env: 'production', path: '/webapps/hermes'},
             { title: 'Production-Checkoutuinodeweb-URL', env: 'production', path: '/checkoutweb'},
-            { title: 'Production-CheckoutNow-URL', env: 'production', path: '/checkoutnow'}
+            { title: 'Production-CheckoutNow-URL', env: 'production', path: '/checkoutnow'},
+            { title: 'DeepLink', env: 'production', returnUrl: 'ebay://logincomplete'}
 
         ];
 
